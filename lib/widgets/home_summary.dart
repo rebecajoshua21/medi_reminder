@@ -12,7 +12,7 @@ class SummarySec extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Maendeleo",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              const Text("Maendeleo",style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
@@ -38,7 +38,7 @@ class SummarySec extends StatelessWidget {
           
         ),
       //  SizedBox(height: 15,),
-        SummCont(),
+        const SummCont(),
 
       ],
     );

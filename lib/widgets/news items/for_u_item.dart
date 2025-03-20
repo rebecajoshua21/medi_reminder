@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ForUItem extends StatelessWidget {
-const ForUItem({ Key? key }) : super(key: key);
+const ForUItem({ super.key });
 
   @override
   Widget build(BuildContext context){
@@ -10,8 +10,8 @@ const ForUItem({ Key? key }) : super(key: key);
             child: Container(width: 360,
             height: 400,
             color: Colors.blue,
-            child: Column(children: [
-              Container(
+            child: const Column(children: [
+              SizedBox(
                 width:300 ,
                 height: 150,
                 child: Image(

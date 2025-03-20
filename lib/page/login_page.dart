@@ -20,32 +20,32 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Ingia',
+            const Text('Ingia',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            Text('Ingia kwenye akaunti tako'),
-            SizedBox(
+            const Text('Ingia kwenye akaunti tako'),
+            const SizedBox(
               height: 40,
             ),
-            Text("Namba ya simu"),
+            const Text("Namba ya simu"),
             TextFormField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(
-                      color: const Color.fromARGB(255, 234, 242, 248)),
+                  borderSide: const BorderSide(
+                      color: Color.fromARGB(255, 234, 242, 248)),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Text("Namba ya simu"),
+            const Text("Namba ya simu"),
             TextFormField(
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(
-                      color: const Color.fromARGB(255, 131, 188, 244)),
+                  borderSide: const BorderSide(
+                      color: Color.fromARGB(255, 131, 188, 244)),
                 ),
               ),
             ),
@@ -59,14 +59,14 @@ class _LoginPageState extends State<LoginPage> {
                         print(change);
                       });
                     }),
-                Text('Tunza')
+                const Text('Tunza')
               ],
             ),
             Center(
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => HomePage()));
+                      MaterialPageRoute(builder: (context) => const HomePage()));
                 },
                 child: Container(
                     decoration: BoxDecoration(
@@ -75,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     height: 50,
                     width: 200,
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'Ingia',
                         style: TextStyle(
@@ -86,20 +86,20 @@ class _LoginPageState extends State<LoginPage> {
                     )),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
             Center(
                 child: TextButton(
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       'Umesahau nywila',
                       style: TextStyle(color: Colors.blue),
                     ))),
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
-            Center(child: Text('Vigezo na masharti kuzingatiwa'))
+            const Center(child: Text('Vigezo na masharti kuzingatiwa'))
           ],
         ),
       )),

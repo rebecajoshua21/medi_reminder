@@ -19,14 +19,14 @@ class DialogBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: Colors.blue[300],
-      content: Container(
+      content: SizedBox(
         height: 500,
         width: 350,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             // get user input
-            Text(
+            const Text(
               "REMINDERS",
               style:
                   TextStyle(color: Colors.white, fontWeight: FontWeight.bold),

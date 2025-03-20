@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class NotifItem extends StatelessWidget {
   const NotifItem({super.key});
@@ -8,7 +7,7 @@ class NotifItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(4.0),
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
         height: 130,
        // color: Colors.green,
@@ -18,7 +17,7 @@ class NotifItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CircleAvatar(radius: 30,),
+              const CircleAvatar(radius: 30,),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(4.0),

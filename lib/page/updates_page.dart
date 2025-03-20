@@ -17,11 +17,11 @@ class UpdatesPage extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          Container(
+          SizedBox(
             height: 257,
-            width:  MediaQuery.of(context).size.width,
+            width: MediaQuery.of(context).size.width,
             child: ListView(
-            scrollDirection: Axis.horizontal,
+              scrollDirection: Axis.horizontal,
               children: [
                 Container(
                   height: 250,
@@ -45,7 +45,7 @@ class UpdatesPage extends StatelessWidget {
                   decoration: const BoxDecoration(
                       image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: AssetImage("assets/images/mesure.jpg"))),
+                          image: AssetImage("assets/images/clock.jpg"))),
                 ),
               ],
             ),
@@ -67,7 +67,7 @@ class UpdatesPage extends StatelessWidget {
           SizedBox(
             height: 400,
             child: ListView(
-              children: [
+              children: const [
                 MyTile(
                   url: "logo.png",
                 ),
@@ -99,13 +99,16 @@ class MyTile extends StatelessWidget {
           Container(
               width: 150,
               height: 150,
-              padding: EdgeInsets.all(5),
+
+
+              
+              padding: const EdgeInsets.all(5),
               child: Image(
-                image: AssetImage("assets/images/${url}"),
+                image: AssetImage("assets/images/$url"),
                 fit: BoxFit.cover,
               )),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5.0),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 5.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

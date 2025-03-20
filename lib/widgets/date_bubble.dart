@@ -22,7 +22,7 @@ class DateBubble extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [Text(day,style: TextStyle(color: Colors.grey[700],fontWeight: FontWeight.bold),),
-            Text(date.toString(),style: TextStyle(
+            Text(date.toString(),style: const TextStyle(
               fontSize: 30,fontWeight: FontWeight.bold,
               color: Colors.blueAccent
             ),)

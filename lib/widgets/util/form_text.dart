@@ -8,9 +8,9 @@ class FormText extends StatelessWidget {
   Widget build(BuildContext context) {
     return   TextField(
               controller: controller,
-              decoration: InputDecoration(
-                enabledBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
-                focusedBorder: const OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+              decoration: const InputDecoration(
+                enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
+                focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
                 border: OutlineInputBorder(),
                 hintText: "Add a new task",
               ),

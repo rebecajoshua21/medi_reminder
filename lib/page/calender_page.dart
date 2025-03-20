@@ -40,8 +40,8 @@ List<String> days = [
     return Scaffold(
       backgroundColor: Colors.blue[100],
       floatingActionButton:      
-                    FloatingActionButton(onPressed: createNewTask,child: Icon(Icons.add,color: Colors.white,size: 30,),
-                    backgroundColor: Colors.blue,
+                    FloatingActionButton(onPressed: createNewTask,
+                    backgroundColor: Colors.blue,child: const Icon(Icons.add,color: Colors.white,size: 30,),
                     ),
                   
       body: SafeArea(
@@ -50,7 +50,7 @@ List<String> days = [
           padding: const EdgeInsets.symmetric(horizontal:15.0),
           child: Column(
           children: [
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
       
             Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -61,8 +61,8 @@ List<String> days = [
                          borderRadius: const BorderRadius.all(Radius.circular(20)),
               border: Border.all(color: Colors.blueAccent),
                       ),
-                      child:Padding(
-                        padding: const EdgeInsets.all(4.0),
+                      child:const Padding(
+                        padding: EdgeInsets.all(4.0),
                         child: Row(children: [
                            Text('March',style: TextStyle(fontWeight: FontWeight.bold,),),
                            Icon(Icons.keyboard_arrow_down),
@@ -72,16 +72,16 @@ List<String> days = [
                     Row(
                       children: [
                         Icon(Icons.email_rounded,size: 30,color: Colors.blue[600],),
-                        SizedBox(width: 20,),
+                        const SizedBox(width: 20,),
                         Icon(Icons.calendar_month,size: 30,color: Colors.blue[600],)
                       ],
                     )
                     
                     ],
                   ),
-      SizedBox(height: 10,),
+      const SizedBox(height: 10,),
       
-                  Container(
+                  SizedBox(
                     height: 90,
                     
       
@@ -95,7 +95,7 @@ List<String> days = [
                   ),
                   Expanded(child: Container(
                     
-                    child: ListView(children: [
+                    child: ListView(children: const [
                     
                       MyTimelineTile(isFirst: true,isLast: false,isPast: true,),
                       MyTimelineTile(isFirst: false,isLast: false,isPast: true,),

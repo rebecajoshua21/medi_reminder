@@ -15,21 +15,21 @@ class TodayCard extends StatelessWidget {
                   color: Colors.blue[300],
                 ),
                 child:  Padding(
-                  padding: EdgeInsets.all(15.0),
+                  padding: const EdgeInsets.all(15.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      const Text(
                         "11:25 AM",
                         style: TextStyle(
                             fontSize: 35, fontWeight: FontWeight.bold),
                       ),
-                      Text(
+                      const Text(
                         "Muda wa kumeza dawa",
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold,color: Color.fromARGB(255, 104, 101, 101)),
                       ),
-                      SizedBox(height:10),
+                      const SizedBox(height:10),
         Container(
           width: 100,
                       decoration: BoxDecoration(

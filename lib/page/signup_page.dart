@@ -14,68 +14,68 @@ class SignupPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 "Jisajili",
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Text("Jisajili kutengeneza akaunti"),
-              SizedBox(
+              const Text("Jisajili kutengeneza akaunti"),
+              const SizedBox(
                 height: 40,
               ),
-              Text("Jina"),
+              const Text("Jina"),
               TextFormField(
                 decoration: InputDecoration(
                   hoverColor: Colors.blue,
                   focusColor: Colors.blue,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(
-                        color: const Color.fromARGB(255, 131, 188, 244)),
+                    borderSide: const BorderSide(
+                        color: Color.fromARGB(255, 131, 188, 244)),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Text("Namba ya simu"),
+              const Text("Namba ya simu"),
               TextFormField(
                 decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(
-                      color: const Color.fromARGB(255, 131, 188, 244)),
+                  borderSide: const BorderSide(
+                      color: Color.fromARGB(255, 131, 188, 244)),
                 )),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Text("Email"),
+              const Text("Email"),
               TextFormField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(
-                        color: const Color.fromARGB(255, 131, 188, 244)),
+                    borderSide: const BorderSide(
+                        color: Color.fromARGB(255, 131, 188, 244)),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
-              Text("Nywila"),
+              const Text("Nywila"),
               TextFormField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
-                    borderSide: BorderSide(
-                        color: const Color.fromARGB(255, 131, 188, 244)),
+                    borderSide: const BorderSide(
+                        color: Color.fromARGB(255, 131, 188, 244)),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Row(
@@ -84,7 +84,10 @@ class SignupPage extends StatelessWidget {
                   Container(
                     height: 40,
                     width: 200,
-                    child: Center(
+                    decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: const Center(
                         child: Text(
                       "Jisajili",
                       style: TextStyle(
@@ -92,35 +95,32 @@ class SignupPage extends StatelessWidget {
                           fontSize: 18,
                           fontWeight: FontWeight.w900),
                     )),
-                    decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(10)),
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Tayari nina account?"),
+                  const Text("Tayari nina account?"),
                   TextButton(
                       onPressed: () {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => HomePage()));
+                                builder: (context) => const HomePage()));
                       },
-                      child: Text(
+                      child: const Text(
                         "Ingia",
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w900),
                       ))
                 ],
               ),
-              Spacer(),
-              Center(child: Text('Vigezo na masharti kuzingatiwa'))
+              const Spacer(),
+              const Center(child: Text('Vigezo na masharti kuzingatiwa'))
             ],
           ),
         ),

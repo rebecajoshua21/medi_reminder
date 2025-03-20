@@ -23,7 +23,7 @@ class MyTimelineTile extends StatelessWidget {
         ),
         endChild: Padding(
           padding: const EdgeInsets.all(5.0),
-          child: Card(child: Container(child: Padding(
+          child: Card(color:isPast? Colors.blue:Colors.blue.shade50, child: Container(child: Padding(
             padding: const EdgeInsets.all(5.0),
             child: Column(
           
@@ -32,11 +32,10 @@ class MyTimelineTile extends StatelessWidget {
             Text("Idadi na maelezo",style: TextStyle(color: isPast ? Colors.white : Colors.blue,fontSize: 20)),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [Text("muda",style: TextStyle(fontSize: 18),),Checkbox(value: isPast ? true : false, onChanged: (bool){})],)
+              children: [const Text("muda",style: TextStyle(fontSize: 18),),Checkbox(value: isPast ? true : false, onChanged: (bool){})],)
             
             ],),
-          ),),
-         color:isPast? Colors.blue:Colors.blue.shade50
+          ),)
           ),
         ),
       
