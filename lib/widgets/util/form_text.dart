@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 
+// use this dialog box
 class FormText extends StatelessWidget {
   final TextEditingController controller;
-  const FormText({super.key, required this.controller, });
+  const FormText({
+    super.key,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return   TextField(
-              controller: controller,
-              decoration: const InputDecoration(
-                enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
-                focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-                border: OutlineInputBorder(),
-                hintText: "Add a new task",
-              ),
-            );
+    return TextField(
+      controller: controller,
+      decoration: const InputDecoration(
+        enabledBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: Colors.blue)),
+        focusedBorder:
+            OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+        border: OutlineInputBorder(),
+        hintText: "Add a new task",
+      ),
+    );
   }
 }
