@@ -1,4 +1,5 @@
 import 'package:becky_app/page/calender_page.dart';
+import 'package:becky_app/widgets/util/dialog_box.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -188,20 +189,36 @@ class Home extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            Container(
-                height: 40,
-                width: 200,
-                decoration: BoxDecoration(
-                    border: Border.all(width: 1, color: Colors.blue),
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(10)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    const Text('Add medications'),
-                    Icon(Icons.add),
-                  ],
-                ))
+            GestureDetector(
+              onTap: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return DialogBox(
+                          controller: TextEditingController(),
+                          onSave: () {
+                            Navigator.pop(context);
+                          },
+                          onCancel: () {
+                            Navigator.pop(context);
+                          });
+                    });
+              },
+              child: Container(
+                  height: 40,
+                  width: 200,
+                  decoration: BoxDecoration(
+                      border: Border.all(width: 1, color: Colors.blue),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      const Text('Add medications'),
+                      Icon(Icons.add),
+                    ],
+                  )),
+            )
           ],
         ),
       ),
