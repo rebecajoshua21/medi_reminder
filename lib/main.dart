@@ -2,6 +2,7 @@ import 'package:becky_app/page/Reminders.dart';
 import 'package:becky_app/page/home_page.dart';
 import 'package:becky_app/page/index.dart';
 import 'package:becky_app/page/notifications.dart';
+import 'package:becky_app/page/statistics.dart';
 // import 'package:becky_app/page/signup_page.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: Reminders(),
+      home: Statistics(),
     );
   }
 }

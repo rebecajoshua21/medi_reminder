@@ -1,3 +1,4 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 class Statistics extends StatelessWidget {
@@ -19,29 +20,49 @@ class Statistics extends StatelessWidget {
               ),
               Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        height: 100,
-                        width: 300,
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(10),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: Container(
+                            height: 120,
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Container(
-                        height: 100,
-                        width: 160,
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(10),
+                        const SizedBox(
+                          width: 10,
                         ),
-                      ),
-                    ],
+                        Expanded(
+                          child: Container(
+                            height: 120,
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: PieChart(
+                                duration: const Duration(milliseconds: 500),
+                                PieChartData(centerSpaceRadius: 30, sections: [
+                                  PieChartSectionData(
+                                      radius: 20,
+                                      value: 20,
+                                      color: Colors.blue),
+                                  PieChartSectionData(
+                                      radius: 20,
+                                      value: 60,
+                                      color: Colors.green),
+                                  PieChartSectionData(
+                                      radius: 20, value: 40, color: Colors.red)
+                                ])),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 10),
                   const Text(
@@ -67,7 +88,26 @@ class Statistics extends StatelessWidget {
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                           color: const Color.fromARGB(255, 183, 219, 248),
-                          borderRadius: BorderRadius.circular(10))),
+                          borderRadius: BorderRadius.circular(10)),
+                      child: LineChart(LineChartData(lineBarsData: [
+                        LineChartBarData(
+                            isCurved: true,
+                            color: Colors.green,
+                            spots: [
+                              FlSpot(0, 0),
+                              FlSpot(4, 5),
+                              FlSpot(6, 6),
+                              FlSpot(8, 8),
+                              FlSpot(12, 2)
+                            ]),
+                        LineChartBarData(color: Colors.red, spots: [
+                          FlSpot(0, 3),
+                          FlSpot(6, 5),
+                          FlSpot(8, 6),
+                          FlSpot(10, 9),
+                          FlSpot(12, 5)
+                        ]),
+                      ]))),
                 ],
               ),
             ],
