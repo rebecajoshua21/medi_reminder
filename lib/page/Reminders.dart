@@ -5,9 +5,9 @@ class Reminders extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Dialog(
         backgroundColor: const Color.fromARGB(255, 225, 238, 248),
-        body: SafeArea(
+        child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child:

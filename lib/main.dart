@@ -1,12 +1,15 @@
-import 'package:becky_app/page/Reminders.dart';
+import 'package:becky_app/controllers/notificationCon.dart';
 import 'package:becky_app/page/home_page.dart';
-import 'package:becky_app/page/index.dart';
-import 'package:becky_app/page/notifications.dart';
-import 'package:becky_app/page/statistics.dart';
 // import 'package:becky_app/page/signup_page.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  LocalNotifications.init();
+  LocalNotifications.reminderNotif(
+      title: "medical reminder",
+      body: "body here",
+      payload: "some payload here");
   runApp(const MyApp());
 }
 
