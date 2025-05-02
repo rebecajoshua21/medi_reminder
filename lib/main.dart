@@ -1,5 +1,6 @@
 import 'package:becky_app/controllers/notificationCon.dart';
 import 'package:becky_app/page/home_page.dart';
+import 'package:becky_app/page/intro_page.dart';
 // import 'package:becky_app/page/signup_page.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: HomePage(),
+      home: IntroPage(),
     );
   }
 }
