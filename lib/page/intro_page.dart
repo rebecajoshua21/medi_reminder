@@ -18,7 +18,7 @@ class IntroPage extends StatelessWidget {
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage("assets/images/mesure.jpg"))),
+                        image: AssetImage("assets/5071700.jpg"))),
               ),
               Container(
                 height: 500,
@@ -26,7 +26,7 @@ class IntroPage extends StatelessWidget {
                 decoration: const BoxDecoration(
                     image: DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage("assets/images/mesure.jpg"))),
+                        image: AssetImage("assets/4711168.jpg"))),
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -39,7 +39,7 @@ class IntroPage extends StatelessWidget {
                       decoration: const BoxDecoration(
                           image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: AssetImage("assets/images/clock.jpg"))),
+                              image: AssetImage("assets/3350438.jpg"))),
                     ),
                   ),
                   Container(

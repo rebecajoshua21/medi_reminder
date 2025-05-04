@@ -1,3 +1,4 @@
+import 'package:becky_app/controllers/notificationCon.dart';
 import 'package:becky_app/page/Reminders.dart';
 import 'package:becky_app/page/calender_page.dart';
 import 'package:becky_app/page/chatbot.dart';
@@ -268,7 +269,25 @@ class Home extends StatelessWidget {
                       Icon(Icons.add),
                     ],
                   )),
-            )
+            ),
+            ElevatedButton(
+              onPressed: () {
+                //   LocalNotifications.reminderNotif(
+                //     title: "Reminder",
+                //     body: "This is your minute reminder",
+                //     payload: "payload",
+
+                //   );
+                DateTime customTime = DateTime.now().add(Duration(minutes: 2));
+
+                LocalNotifications.reminderNotificatio(
+                    title: "setup",
+                    body: "hello world",
+                    payload: "some payload",
+                    scheduledTime: customTime);
+              },
+              child: Text("Start Reminder"),
+            ),
           ],
         ),
       ),

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "184103867068",
+    "project_id": "medireminder-e494b",
+    "storage_bucket": "medireminder-e494b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:184103867068:android:46049414ef9439ab73f6b9",
+        "android_client_info": {
+          "package_name": "com.example.becky_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDW92JGlU0CvUxbh2ZGa3ZeHqeik8_4EXw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
