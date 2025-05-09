@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
     final reminderService =
         Provider.of<RemindersController>(context, listen: false);
     return Scaffold(
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         // floatingActionButton: FloatingActionButton(onPressed: () {}),
         floatingActionButton: Padding(
           padding: const EdgeInsets.only(bottom: 27.0),

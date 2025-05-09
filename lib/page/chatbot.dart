@@ -1,6 +1,7 @@
 import 'package:becky_app/components/chat_bubble.dart';
 import 'package:becky_app/models/message_modal.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gemini/flutter_gemini.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
@@ -14,6 +15,20 @@ class _ChatPageState extends State<ChatPage> {
   final promptCon = TextEditingController();
 
   void sendMessage() {
+    Gemini.instance.prompt(parts: [
+      Part.text(
+          "${promptCon.text} reply as doctor Becky who is here to help with simple medical questions and advice"),
+    ]).then((value) {
+      // print(value?.output);
+      setState(() {
+        messages.add(MessageModal(
+            isPrompt: false,
+            message: value?.output ?? "hello",
+            time: DateTime.now()));
+      });
+    }).catchError((e) {
+      print('error ${e}');
+    });
     final msg = promptCon.text;
     setState(() {
       promptCon.clear();
@@ -22,12 +37,6 @@ class _ChatPageState extends State<ChatPage> {
     });
 
     //response message
-    setState(() {
-      messages.add(MessageModal(
-          isPrompt: false,
-          message: "Hellow I am your personal medical assistant",
-          time: DateTime.now()));
-    });
   }
 
   @override
@@ -71,10 +80,10 @@ class _ChatPageState extends State<ChatPage> {
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15))),
                           focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.green),
+                              borderSide: BorderSide(color: Colors.blue),
                               borderRadius:
                                   BorderRadius.all(Radius.circular(15))),
-                          fillColor: Colors.grey[700],
+                          fillColor: const Color.fromARGB(255, 166, 202, 255),
                           filled: true,
                           hintText: "Muulize wakili",
                         ))),
@@ -82,7 +91,7 @@ class _ChatPageState extends State<ChatPage> {
                 GestureDetector(
                   onTap: () {
                     sendMessage();
-                    print(messages.length);
+                    // print(messages.length);
                   },
                   child: CircleAvatar(
                     radius: 23,
