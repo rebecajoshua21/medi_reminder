@@ -85,7 +85,7 @@ class _ChatPageState extends State<ChatPage> {
                                   BorderRadius.all(Radius.circular(15))),
                           fillColor: const Color.fromARGB(255, 166, 202, 255),
                           filled: true,
-                          hintText: "Muulize wakili",
+                          hintText: "Muulize dokta Becky",
                         ))),
                 Spacer(),
                 GestureDetector(
