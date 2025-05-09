@@ -7,77 +7,83 @@ class UpdatesPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const Text(
-            'Kwaajili yako',
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          SizedBox(
-            height: 257,
-            width: MediaQuery.of(context).size.width,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                Container(
-                  height: 250,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage("assets/images/mesure.jpg"))),
-                ),
-                Container(
-                  height: 250,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage("assets/images/mesure.jpg"))),
-                ),
-                Container(
-                  height: 250,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage("assets/images/clock.jpg"))),
-                ),
-              ],
+          child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const Text(
+              'Kwaajili yako',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 8.0),
-            child: Row(
-              children: [
-                Text(
-                  "Machapisho mengine",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
+            const SizedBox(
+              height: 10,
+            ),
+            SizedBox(
+              height: 257,
+              width: MediaQuery.of(context).size.width,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  Container(
+                    height: 250,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage("assets/images/mesure.jpg"))),
                   ),
-                )
-              ],
+                  Container(
+                    height: 250,
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage("assets/images/mesure.jpg"))),
+                  ),
+                  Container(
+                    height: 250,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage("assets/images/clock.jpg"))),
+                  ),
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            height: 400,
-            child: ListView(
-              children: const [
-                MyTile(
-                  url: "logo.png",
-                ),
-                MyTile(
-                  url: "rib.jpg",
-                ),
-              ],
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 8.0),
+              child: Row(
+                children: [
+                  Text(
+                    "Machapisho mengine",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
+                  )
+                ],
+              ),
             ),
-          )
-        ]),
+            SizedBox(
+              height: 400,
+              child: ListView(
+                children: const [
+                  MyTile(
+                    url: "logo.png",
+                  ),
+                  MyTile(
+                    url: "rib.jpg",
+                  ),
+                  MyTile(
+                    url: "rib.jpg",
+                  ),
+                ],
+              ),
+            )
+          ]),
+        ),
       )),
     );
   }
@@ -99,9 +105,6 @@ class MyTile extends StatelessWidget {
           Container(
               width: 150,
               height: 150,
-
-
-              
               padding: const EdgeInsets.all(5),
               child: Image(
                 image: AssetImage("assets/images/$url"),
@@ -116,7 +119,7 @@ class MyTile extends StatelessWidget {
                   "Heading goes here",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
                 ),
-                Text("Some other text goes here as paragraph")
+                // Text("Some other text goes here as paragraph")
               ],
             ),
           )

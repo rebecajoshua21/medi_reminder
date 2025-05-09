@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/home/youze/snap/flutter/common/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/home/youze/Android/Sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/media/youze/FC4CFBF54CFBA912/FLUTTERX/medi_reminder/android/app/.cxx/RelWithDebInfo/4b2a6622/armeabi-v7a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/home/youze/Android/Sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/media/youze/FC4CFBF54CFBA912/FLUTTERX/medi_reminder/android/app/.cxx/RelWithDebInfo/4b2a6622/armeabi-v7a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}

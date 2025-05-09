@@ -1,5 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class Statistics extends StatelessWidget {
   const Statistics({super.key});
@@ -29,68 +30,82 @@ class Statistics extends StatelessWidget {
                           Expanded(
                             flex: 2,
                             child: Container(
-                              height: 120,
+                              height: 100,
                               decoration: BoxDecoration(
-                                color: Colors.blue,
+                                color: const Color.fromARGB(255, 183, 219, 248),
                                 borderRadius: BorderRadius.circular(10),
+                              ),
+                              padding: EdgeInsets.all(10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Overall Adherness",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Center(
+                                    child: Text(
+                                      "64%",
+                                      style: TextStyle(
+                                          fontSize: 25,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                  LinearPercentIndicator(
+                                    // width: 140.0,
+                                    lineHeight: 12.0,
+                                    percent: 0.64,
+                                    backgroundColor: Colors.grey[100],
+                                    progressColor: Colors.green,
+                                  ),
+                                ],
                               ),
                             ),
                           ),
                           const SizedBox(
                             width: 10,
                           ),
-                          Expanded(
-                            child: Container(
-                              height: 120,
-                              decoration: BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: PieChart(
-                                  duration: const Duration(milliseconds: 500),
-                                  PieChartData(
-                                      centerSpaceRadius: 30,
-                                      sections: [
-                                        PieChartSectionData(
-                                            radius: 20,
-                                            value: 20,
-                                            color: Colors.blue),
-                                        PieChartSectionData(
-                                            radius: 20,
-                                            value: 60,
-                                            color: Colors.green),
-                                        PieChartSectionData(
-                                            radius: 20,
-                                            value: 40,
-                                            color: Colors.red)
-                                      ])),
-                            ),
-                          ),
+                          // Expanded(
+                          //   child: Container(
+                          //     height: 120,
+                          //     decoration: BoxDecoration(
+                          //       color: Colors.blue,
+                          //       borderRadius: BorderRadius.circular(10),
+                          //     ),
+                          //     child: PieChart(
+                          //         duration: const Duration(milliseconds: 500),
+                          //         PieChartData(
+                          //             centerSpaceRadius: 30,
+                          //             sections: [
+                          //               PieChartSectionData(
+                          //                   radius: 20,
+                          //                   value: 20,
+                          //                   color: Colors.blue),
+                          //               PieChartSectionData(
+                          //                   radius: 20,
+                          //                   value: 60,
+                          //                   color: Colors.green),
+                          //               PieChartSectionData(
+                          //                   radius: 20,
+                          //                   value: 40,
+                          //                   color: Colors.red)
+                          //             ])),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ),
                     const SizedBox(height: 10),
                     const Text(
-                      'Table',
+                      'Weekly performance',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(height: 10),
                     Container(
-                      height: 220,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    const Text('Overview Graph',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold)),
-                    const SizedBox(height: 10),
-                    Container(
-                        height: 220,
+                        height: 250,
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                             color: const Color.fromARGB(255, 183, 219, 248),
@@ -114,6 +129,40 @@ class Statistics extends StatelessWidget {
                             FlSpot(12, 5)
                           ]),
                         ]))),
+                    const SizedBox(height: 10),
+                    const Text('Missed reminders',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold)),
+                    Container(
+                      height: 250,
+                      margin: EdgeInsets.only(top: 10),
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        // color: Colors.white,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: ListView.builder(
+                        itemCount: 3,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 5.0),
+                            child: ListTile(
+                              tileColor: Colors.white,
+                              leading: Text(
+                                "12:23",
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              title: Text("Some Text",
+                                  style: TextStyle(fontSize: 18)),
+                              trailing: Icon(
+                                Icons.alarm_off,
+                                color: Colors.red,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ],
