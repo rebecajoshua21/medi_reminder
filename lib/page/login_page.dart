@@ -1,4 +1,5 @@
 import 'package:becky_app/page/home_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -9,6 +10,35 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  Future<void> _loginWithEmailAndPassword(String email, String password) async {
+    try {
+      // Use FirebaseAuth to sign in with email and password
+      final userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      print("User logged in: ${userCredential.user?.email}");
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      } else {
+        print('Login failed: ${e.message}');
+      }
+    } catch (e) {
+      print('An error occurred: $e');
+    }
+  }
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     bool? change = false;
@@ -26,8 +56,9 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(
               height: 40,
             ),
-            const Text("Namba ya simu"),
+            const Text("Barua pepe"),
             TextFormField(
+              controller: _emailController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -39,8 +70,9 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(
               height: 20,
             ),
-            const Text("Namba ya simu"),
+            const Text("Nywila"),
             TextFormField(
+              controller: _passwordController,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -65,8 +97,12 @@ class _LoginPageState extends State<LoginPage> {
             Center(
               child: GestureDetector(
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const HomePage()));
+                  _loginWithEmailAndPassword(
+                      _emailController.text, _passwordController.text);
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //         builder: (context) => const HomePage()));
                 },
                 child: Container(
                     decoration: BoxDecoration(

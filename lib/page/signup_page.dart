@@ -1,8 +1,53 @@
 import 'package:becky_app/page/home_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class SignupPage extends StatelessWidget {
-  const SignupPage({super.key});
+class SignupPage extends StatefulWidget {
+  SignupPage({super.key});
+
+  @override
+  State<SignupPage> createState() => _SignupPageState();
+}
+
+class _SignupPageState extends State<SignupPage> {
+  final _auth = FirebaseAuth.instance;
+
+  Future<void> signUp(
+      String email, String pass, String name, String phone) async {
+    try {
+      UserCredential userCredential = await _auth
+          .createUserWithEmailAndPassword(email: email, password: pass);
+      // Add user details to Firestore
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(userCredential.user?.uid)
+          .set({
+        'email': email,
+        'username': name,
+        'phone': phone,
+        'createdAt': DateTime.now(),
+        'uid': userCredential.user?.uid,
+      });
+    } catch (e) {}
+  }
+
+  final TextEditingController nameController = TextEditingController();
+
+  final TextEditingController phoneController = TextEditingController();
+
+  final TextEditingController emailController = TextEditingController();
+
+  final TextEditingController passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    phoneController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +58,7 @@ class SignupPage extends StatelessWidget {
           padding: const EdgeInsets.all(15.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
                 "Jisajili",
@@ -27,6 +73,7 @@ class SignupPage extends StatelessWidget {
               ),
               const Text("Jina"),
               TextFormField(
+                controller: nameController,
                 decoration: InputDecoration(
                   hoverColor: Colors.blue,
                   focusColor: Colors.blue,
@@ -42,6 +89,7 @@ class SignupPage extends StatelessWidget {
               ),
               const Text("Namba ya simu"),
               TextFormField(
+                controller: phoneController,
                 decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -54,6 +102,7 @@ class SignupPage extends StatelessWidget {
               ),
               const Text("Email"),
               TextFormField(
+                controller: emailController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -67,6 +116,7 @@ class SignupPage extends StatelessWidget {
               ),
               const Text("Nywila"),
               TextFormField(
+                controller: passwordController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -81,20 +131,26 @@ class SignupPage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    height: 40,
-                    width: 200,
-                    decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: const Center(
-                        child: Text(
-                      "Jisajili",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w900),
-                    )),
+                  GestureDetector(
+                    onTap: () {
+                      signUp(emailController.text, passwordController.text,
+                          nameController.text, phoneController.text);
+                    },
+                    child: Container(
+                      height: 40,
+                      width: 200,
+                      decoration: BoxDecoration(
+                          color: Colors.blue,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: const Center(
+                          child: Text(
+                        "Jisajili",
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w900),
+                      )),
+                    ),
                   ),
                 ],
               ),

@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/home/youze/snap/flutter/common/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/home/youze/Android/Sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/media/youze/FC4CFBF54CFBA912/FLUTTERX/medi_reminder/android/app/.cxx/Debug/486u17v1/x86_64",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/home/youze/Android/Sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/media/youze/FC4CFBF54CFBA912/FLUTTERX/medi_reminder/android/app/.cxx/Debug/486u17v1/x86_64",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}

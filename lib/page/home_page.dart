@@ -3,6 +3,7 @@ import 'package:becky_app/controllers/reminders_controller.dart';
 import 'package:becky_app/page/Reminders.dart';
 import 'package:becky_app/page/calender_page.dart';
 import 'package:becky_app/page/chatbot.dart';
+import 'package:becky_app/page/forum_page.dart';
 import 'package:becky_app/page/statistics.dart';
 import 'package:becky_app/page/updates_page.dart';
 import 'package:becky_app/widgets/util/dialog_box.dart';
@@ -23,7 +24,8 @@ class _HomePageState extends State<HomePage> {
     const CalenderPage(),
     const ChatPage(),
     const Statistics(),
-    const UpdatesPage()
+    ForumPage()
+    // const UpdatesPage()
   ];
   int currentIndex = 0;
 

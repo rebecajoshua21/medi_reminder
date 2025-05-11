@@ -42,7 +42,7 @@ class Home extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Hellow !",
+                                  "Habari!",
                                   style: TextStyle(fontStyle: FontStyle.italic),
                                 ),
                                 Text(
@@ -83,7 +83,7 @@ class Home extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(
-                        "Today's Schedule",
+                        "Ratiba ya leo",
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),

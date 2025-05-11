@@ -1,0 +1,2 @@
+/media/youze/FC4CFBF54CFBA912/FLUTTERX/medi_reminder/android/app/.cxx/Debug/486u17v1/x86_64/CMakeFiles/edit_cache.dir
+/media/youze/FC4CFBF54CFBA912/FLUTTERX/medi_reminder/android/app/.cxx/Debug/486u17v1/x86_64/CMakeFiles/rebuild_cache.dir

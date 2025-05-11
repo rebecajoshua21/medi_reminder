@@ -14,10 +14,10 @@ class _ChatPageState extends State<ChatPage> {
   final List<MessageModal> messages = [];
   final promptCon = TextEditingController();
 
-  void sendMessage() {
+  void sendMessage() async {
     Gemini.instance.prompt(parts: [
-      Part.text(
-          "${promptCon.text} reply as doctor Becky who is here to help with simple medical questions and advice"),
+      await Part.text(
+          "${promptCon.text} reply as doctor Becky who is here to help with simple medical questions and advice,We know you are not trained for this and your answers are not 100% reliable we should seek proper medical assistance if necessary,you dont need to mention that,"),
     ]).then((value) {
       // print(value?.output);
       setState(() {
