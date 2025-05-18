@@ -1,4 +1,5 @@
 import 'package:becky_app/page/home_page.dart';
+import 'package:becky_app/page/signup_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -127,9 +128,14 @@ class _LoginPageState extends State<LoginPage> {
             ),
             Center(
                 child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SignupPage()));
+                    },
                     child: const Text(
-                      'Umesahau nywila',
+                      'Sajili account mpya',
                       style: TextStyle(color: Colors.blue),
                     ))),
             const SizedBox(
