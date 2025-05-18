@@ -1,4 +1,5 @@
 import 'package:becky_app/controllers/reminders_controller.dart';
+import 'package:becky_app/page/calender_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // import 'package:medifriend/Pages/notification_page.dart';
@@ -56,24 +57,50 @@ class Home extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Container(
-                        height: 50,
-                        width: 50,
-                        decoration: const BoxDecoration(
-                          color: Colors.white60,
-                          shape: BoxShape.circle,
-                        ),
-                        child: IconButton(
-                          icon: Icon(
-                            Icons.notifications_active_rounded,
-                            color: Colors.blue[600],
-                            size: 30,
+                      Row(children: [
+                        Container(
+                          height: 50,
+                          width: 50,
+                          decoration: const BoxDecoration(
+                            color: Colors.white60,
+                            shape: BoxShape.circle,
                           ),
-                          onPressed: () {
-// Navigator.push(context, MaterialPageRoute(builder: (context)=>NotificationPage()));
-                          },
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.calendar_month,
+                              color: Colors.blue[600],
+                              size: 30,
+                            ),
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CalenderPage()));
+                            },
+                          ),
                         ),
-                      )
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Container(
+                          height: 50,
+                          width: 50,
+                          decoration: const BoxDecoration(
+                            color: Colors.white60,
+                            shape: BoxShape.circle,
+                          ),
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.notifications_active_rounded,
+                              color: Colors.blue[600],
+                              size: 30,
+                            ),
+                            onPressed: () {
+// Navigator.push(context, MaterialPageRoute(builder: (context)=>NotificationPage()));
+                            },
+                          ),
+                        ),
+                      ])
                     ],
                   ),
                   const SizedBox(

@@ -17,22 +17,24 @@ class _CalenderPageState extends State<CalenderPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: TableCalendar(
-          // locale: 'sw_KE',
-          selectedDayPredicate: (day) {
-            // DateTime _selectedDate;
-            return isSameDay(_selectedDay, day);
-          },
-          onDaySelected: (selectedDay, focusedDay) {
-            setState(() {
-              _selectedDay = selectedDay;
-              _focusedDay = focusedDay; // update `_focusedDay` here as well
-            });
-          },
-          focusedDay: DateTime.now(),
-          firstDay: DateTime.now(),
-          lastDay: DateTime.now().add(Duration(days: 1000))),
+    return Scaffold(
+      body: SafeArea(
+        child: TableCalendar(
+            // locale: 'sw_KE',
+            selectedDayPredicate: (day) {
+              // DateTime _selectedDate;
+              return isSameDay(_selectedDay, day);
+            },
+            onDaySelected: (selectedDay, focusedDay) {
+              setState(() {
+                _selectedDay = selectedDay;
+                _focusedDay = focusedDay; // update `_focusedDay` here as well
+              });
+            },
+            focusedDay: DateTime.now(),
+            firstDay: DateTime.now(),
+            lastDay: DateTime.now().add(Duration(days: 1000))),
+      ),
     );
     // return Scaffold(
     //   backgroundColor: Colors.blue[100],

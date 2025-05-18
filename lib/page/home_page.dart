@@ -1,6 +1,7 @@
 import 'package:becky_app/controllers/notificationCon.dart';
 import 'package:becky_app/controllers/reminders_controller.dart';
 import 'package:becky_app/page/Reminders.dart';
+import 'package:becky_app/page/appointment.dart';
 import 'package:becky_app/page/calender_page.dart';
 import 'package:becky_app/page/chatbot.dart';
 import 'package:becky_app/page/forum_page.dart';
@@ -21,7 +22,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<Widget> pages = [
     const Home(),
-    const CalenderPage(),
+    const AppointmentPage(),
     const ChatPage(),
     const Statistics(),
     ForumPage()
@@ -73,15 +74,16 @@ class _HomePageState extends State<HomePage> {
         bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.blue,
           unselectedItemColor: Colors.blueAccent,
+          currentIndex: currentIndex,
           onTap: (index) {
             setState(() {
               currentIndex = index;
             });
           },
           items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Nyumbani'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.calendar_month), label: 'Kalenda'),
+                icon: Icon(Icons.meeting_room), label: 'Miadi'),
             BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Msaada'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.analytics), label: 'Takwimu'),
