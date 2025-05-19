@@ -53,8 +53,8 @@ class _HomePageState extends State<HomePage> {
                     //       Navigator.pop(context);
                     //     });
                     return MedicationReminderDialog(
-                      onSave: (name, dosage, ss) {
-                        reminderService.addReminder(name, dosage, 3, false);
+                      onSave: (name, dosage, ss, sd) {
+                        reminderService.addReminder(name, dosage, 3, false, sd);
                         Navigator.pop(context);
                       },
                       onCancel: () {},
@@ -317,7 +317,7 @@ class _HomePageState extends State<HomePage> {
 // import 'package:flutter/material.dart';
 
 class MedicationReminderDialog extends StatefulWidget {
-  final Function(String, String, String) onSave;
+  final Function(String, String, String, DateTime) onSave;
   final VoidCallback onCancel;
 
   const MedicationReminderDialog({
@@ -335,7 +335,8 @@ class _MedicationReminderDialogState extends State<MedicationReminderDialog> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _dosageController = TextEditingController();
   final TextEditingController _timeController = TextEditingController();
-
+  final TextEditingController _startDateController = TextEditingController();
+  TimeOfDay? selectedTime;
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -376,45 +377,80 @@ class _MedicationReminderDialogState extends State<MedicationReminderDialog> {
               ),
               const SizedBox(height: 16),
               TextField(
-                controller: _timeController,
+                controller: _startDateController,
                 decoration: InputDecoration(
                   labelText: "Start date",
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(15)),
                 ),
               ),
-              const TimePickerDialog(
-                  confirmText: "Set",
-                  cancelText: "Sitisha",
-                  initialEntryMode: TimePickerEntryMode.inputOnly,
-                  initialTime: TimeOfDay(hour: 10, minute: 20)),
-              const SizedBox(height: 24),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  TextButton(
-                    onPressed: widget.onCancel,
-                    child: const Text("Cancel"),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      widget.onSave(
-                        _nameController.text,
-                        _dosageController.text,
-                        _timeController.text,
-                      );
-                      DateTime customTime =
-                          DateTime.now().add(Duration(minutes: 2));
-                      LocalNotifications.reminderNotificatio(
-                          title: _nameController.text,
-                          body: _dosageController.text,
-                          payload: "some payload",
-                          scheduledTime: customTime);
-                    },
-                    child: const Text("Save"),
-                  ),
-                ],
+              ElevatedButton(
+                onPressed: () async {
+                  selectedTime = await showTimePicker(
+                    context: context,
+                    initialTime: TimeOfDay(hour: 10, minute: 20),
+                    initialEntryMode: TimePickerEntryMode.inputOnly,
+                    confirmText: "Set",
+                    cancelText: "Sitisha",
+                  );
+                  if (selectedTime != null) {
+                    print("Selected time: ${selectedTime!.format(context)}");
+                  }
+                },
+                child: const Text("Pick Time"),
               ),
+              const SizedBox(height: 24),
+              ElevatedButton(
+                onPressed: () {
+                  widget.onSave(
+                      _nameController.text,
+                      _dosageController.text,
+                      _timeController.text,
+                      selectedTime != null
+                          ? DateTime(
+                              DateTime.now().year,
+                              DateTime.now().month,
+                              DateTime.now().day,
+                              selectedTime!.hour,
+                              selectedTime!.minute,
+                            )
+                          : DateTime.now());
+                  DateTime customTime =
+                      DateTime.now().add(Duration(minutes: 2));
+                  LocalNotifications.reminderNotificatio(
+                      title: "Meza ${_nameController.text}",
+                      body: _dosageController.text,
+                      payload: "some payload",
+                      scheduledTime: customTime);
+                },
+                child: const Text("Save"),
+              ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              //   children: [
+              //     TextButton(
+              //       onPressed: widget.onCancel,
+              //       child: const Text("Cancel"),
+              //     ),
+              //     ElevatedButton(
+              //       onPressed: () {
+              //         widget.onSave(
+              //             _nameController.text,
+              //             _dosageController.text,
+              //             _timeController.text,
+              //             _startDateController.text);
+              //         DateTime customTime =
+              //             DateTime.now().add(Duration(minutes: 2));
+              //         LocalNotifications.reminderNotificatio(
+              //             title: _nameController.text,
+              //             body: _dosageController.text,
+              //             payload: "some payload",
+              //             scheduledTime: customTime);
+              //       },
+              //       child: const Text("Save"),
+              //     ),
+              //   ],
+              // ),
             ],
           ),
         ),

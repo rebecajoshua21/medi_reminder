@@ -125,7 +125,7 @@ class _ForumPageState extends State<ForumPage> {
             TextField(
               controller: postController,
               decoration: InputDecoration(
-                labelText: "What's on your mind?",
+                labelText: "Ungependa kujadili nin?",
                 border: OutlineInputBorder(),
               ),
             ),
@@ -133,7 +133,7 @@ class _ForumPageState extends State<ForumPage> {
             ElevatedButton(
               onPressed: () =>
                   addPost(userController.text, postController.text),
-              child: Text('Post'),
+              child: Text('Chapisha'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue.shade700,
               ),

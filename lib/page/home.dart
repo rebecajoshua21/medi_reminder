@@ -1,5 +1,7 @@
 import 'package:becky_app/controllers/reminders_controller.dart';
 import 'package:becky_app/page/calender_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 // import 'package:medifriend/Pages/notification_page.dart';
@@ -7,6 +9,25 @@ import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
+
+  Future<String> fetchUserName() async {
+    // Assuming you have a Firestore instance and a collection named 'users'
+
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) {
+      throw Exception("No user is currently signed in.");
+    }
+    final userId = user.uid;
+    final firestore = FirebaseFirestore.instance;
+    final userDoc = await firestore.collection('users').doc(userId).get();
+
+    if (userDoc.exists) {
+      print(userDoc.data());
+      return userDoc.data()?['username'] ?? 'Unknown User';
+    } else {
+      return 'Unknown';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,13 +50,12 @@ class Home extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Row(
+                      Row(
                         children: [
                           CircleAvatar(
                             radius: 30,
                             backgroundColor: Colors.blueGrey,
-                            backgroundImage:
-                                AssetImage('assets/images/profile_pic.png'),
+                            backgroundImage: AssetImage('assets/image.png'),
                           ),
                           Padding(
                             padding: EdgeInsets.all(8.0),
@@ -46,11 +66,33 @@ class Home extends StatelessWidget {
                                   "Habari!",
                                   style: TextStyle(fontStyle: FontStyle.italic),
                                 ),
-                                Text(
-                                  "Neema Shija",
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
+                                FutureBuilder<String>(
+                                  future: fetchUserName(),
+                                  builder: (context, snapshot) {
+                                    if (snapshot.connectionState ==
+                                        ConnectionState.waiting) {
+                                      return Text(
+                                        "Loading...",
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      );
+                                    } else if (snapshot.hasError) {
+                                      return Text(
+                                        "Error",
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      );
+                                    } else {
+                                      return Text(
+                                        snapshot.data ?? "Unknown User",
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold),
+                                      );
+                                    }
+                                  },
                                 )
                               ],
                             ),
@@ -125,7 +167,7 @@ class Home extends StatelessWidget {
                           child: Row(
                             children: [
                               Text(
-                                'Today',
+                                'Leo',
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               Icon(Icons.keyboard_arrow_down),
@@ -151,9 +193,11 @@ class Home extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            "11:25 AM",
-                            style: TextStyle(
+                          Text(
+                            reminders.isNotEmpty
+                                ? reminders.first.times[0]
+                                : "No Data",
+                            style: const TextStyle(
                                 fontSize: 35, fontWeight: FontWeight.bold),
                           ),
                           const Text(
@@ -177,7 +221,7 @@ class Home extends StatelessWidget {
                               padding: EdgeInsets.all(3.0),
                               child: Center(
                                 child: Text(
-                                  'Details',
+                                  'zaidi..',
                                   style: TextStyle(fontWeight: FontWeight.bold),
                                 ),
                               ),
@@ -194,7 +238,7 @@ class Home extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(
-                        "Upcoming Schedules",
+                        "Ratiba zijazo",
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.bold),
                       ),
@@ -209,7 +253,7 @@ class Home extends StatelessWidget {
                           child: Row(
                             children: [
                               Text(
-                                'This week',
+                                'Wiki hii',
                                 style: TextStyle(fontWeight: FontWeight.bold),
                               ),
                               Icon(Icons.keyboard_arrow_down),
@@ -234,21 +278,31 @@ class Home extends StatelessWidget {
                       topRight: Radius.circular(40))),
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10.0),
-                child: ListView.builder(
-                  itemCount: reminders.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final reminder = reminders[index];
-                    return MedicalReminderTile(
-                      title: reminder.title,
-                      subtitle: reminder.description,
-                      time: reminder.freq.toString(),
-                      isCompleted: reminder.isComplete,
-                      onToggle: () {
-                        reminderService.toggleComplete(index);
-                      },
-                    );
-                  },
-                ),
+                child: reminders.isEmpty
+                    ? Center(
+                        child: Text(
+                          "Hakuna ratiba ya dawa",
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      )
+                    : ListView.builder(
+                        itemCount: reminders.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          final reminder = reminders[index];
+                          return MedicalReminderTile(
+                            title: reminder.title,
+                            subtitle: reminder.description,
+                            time: reminder.times[0],
+                            isCompleted: reminder.isComplete,
+                            onToggle: () {
+                              reminderService.toggleComplete(index);
+                            },
+                          );
+                        },
+                      ),
               ),
             ),
           ],
@@ -292,7 +346,7 @@ class MedicalReminderTile extends StatelessWidget {
                 Text(
                   title,
                   style: TextStyle(
-                    fontSize: 16,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: isCompleted ? Colors.grey : Colors.black,
                   ),
@@ -301,7 +355,7 @@ class MedicalReminderTile extends StatelessWidget {
                 Text(
                   subtitle,
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 16,
                     color: isCompleted ? Colors.grey : Colors.black54,
                   ),
                 ),

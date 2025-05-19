@@ -1,12 +1,22 @@
+import 'package:becky_app/controllers/reminders_controller.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:provider/provider.dart';
 
 class Statistics extends StatelessWidget {
   const Statistics({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var reminderService = Provider.of<RemindersController>(
+      context,
+    );
+    var reminders = reminderService.reminders;
+
+    final completedReminders =
+        reminders.where((reminder) => reminder.isComplete).length;
+    final totalReminders = reminders.length;
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 225, 238, 248),
       body: SafeArea(
@@ -17,7 +27,7 @@ class Statistics extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'Statistics',
+                  'Takwimu',
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
                 Column(
@@ -40,14 +50,14 @@ class Statistics extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    "Overall Adherness",
+                                    "Maendeleo kwa ujumla",
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Center(
                                     child: Text(
-                                      "64%",
+                                      "${(completedReminders / totalReminders * 100).toStringAsFixed(0)}%",
                                       style: TextStyle(
                                           fontSize: 25,
                                           fontWeight: FontWeight.bold),
@@ -56,7 +66,8 @@ class Statistics extends StatelessWidget {
                                   LinearPercentIndicator(
                                     // width: 140.0,
                                     lineHeight: 12.0,
-                                    percent: 0.64,
+                                    percent:
+                                        completedReminders / totalReminders,
                                     backgroundColor: Colors.grey[100],
                                     progressColor: Colors.green,
                                   ),

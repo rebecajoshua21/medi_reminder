@@ -3,14 +3,32 @@ import 'package:flutter/material.dart';
 
 class RemindersController extends ChangeNotifier {
   List<Reminder> _reminderList = [
-    Reminder(title: "title", description: "desc", freq: 3, isComplete: true)
+    // Reminder(title: "title", description: "desc", freq: 3, isComplete: true)
   ];
 
   List<Reminder> get reminders => _reminderList;
 
-  void addReminder(String title, String desc, int freq, bool isComplet) {
+  void addReminder(
+      String title, String desc, int freq, bool isComplet, DateTime startdate) {
     Reminder reminder = Reminder(
-        title: title, description: desc, freq: freq, isComplete: isComplet);
+        title: title,
+        times: List.generate(
+          freq,
+          (index) {
+            DateTime reminderTime = DateTime.fromMicrosecondsSinceEpoch(
+                    startdate.microsecondsSinceEpoch)
+                .add(Duration(hours: (24 ~/ freq) * index));
+
+            String formattedTime =
+                "${reminderTime.hour.toString().padLeft(2, '0')}:${reminderTime.minute.toString().padLeft(2, '0')}";
+
+            return formattedTime;
+          },
+        ),
+        description: desc,
+        freq: freq,
+        isComplete: isComplet,
+        startdate: startdate);
     print("🔥🔥saved");
     _reminderList.add(reminder);
     notifyListeners();
