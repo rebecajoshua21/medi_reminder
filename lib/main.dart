@@ -1,5 +1,6 @@
 import 'package:becky_app/controllers/notificationCon.dart';
 import 'package:becky_app/controllers/reminders_controller.dart';
+import 'package:becky_app/models/reminder.dart';
 import 'package:becky_app/page/auth_page.dart';
 import 'package:becky_app/page/forum_page.dart';
 import 'package:becky_app/page/home_page.dart';
@@ -10,6 +11,8 @@ import 'package:firebase_core/firebase_core.dart';
 // import 'package:becky_app/page/signup_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:timezone/data/latest.dart' as tzdata;
 import 'package:timezone/timezone.dart' as tz;
@@ -22,6 +25,9 @@ void main() async {
       tz.getLocation('Africa/Nairobi')); // or 'UTC' or your preferred zone
   Gemini.init(apiKey: "AIzaSyCtahZHGAlJn0xHUmd4MkIEcNyxHL94YPY");
   LocalNotifications.init();
+  await Hive.initFlutter();
+  Hive.registerAdapter(ReminderAdapter());
+  await Hive.openBox<Reminder>('reminders');
   // LocalNotifications.reminderNotif(
   //     title: "medical reminder",
   //     body: "body here",

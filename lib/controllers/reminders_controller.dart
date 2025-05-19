@@ -1,12 +1,18 @@
 import 'package:becky_app/models/reminder.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 
 class RemindersController extends ChangeNotifier {
-  List<Reminder> _reminderList = [
-    // Reminder(title: "title", description: "desc", freq: 3, isComplete: true)
-  ];
+  // List<Reminder> _reminderList = [
+  //   // Reminder(title: "title", description: "desc", freq: 3, isComplete: true)
+  // ];
 
-  List<Reminder> get reminders => _reminderList;
+  late Box<Reminder> _reminderBox;
+  RemindersController() {
+    _reminderBox = Hive.box<Reminder>('reminders');
+  }
+
+  List<Reminder> get reminders => _reminderBox.values.toList();
 
   void addReminder(
       String title, String desc, int freq, bool isComplet, DateTime startdate) {
@@ -30,21 +36,21 @@ class RemindersController extends ChangeNotifier {
         isComplete: isComplet,
         startdate: startdate);
     print("🔥🔥saved");
-    _reminderList.add(reminder);
+    _reminderBox.add(reminder);
     notifyListeners();
   }
 
   void deleteReminder(int index) {
-    if (index >= 0 && index < _reminderList.length) {
-      _reminderList.removeAt(index);
+    if (index >= 0 && index < _reminderBox.length) {
+      _reminderBox.deleteAt(index);
       notifyListeners();
     }
   }
 
   void toggleComplete(int index) {
-    if (index >= 0 && index < _reminderList.length) {
-      _reminderList[index].isComplete = !_reminderList[index].isComplete;
-      notifyListeners();
-    }
+    Reminder reminder = _reminderBox.getAt(index)!;
+    reminder.isComplete = !reminder.isComplete;
+    reminder.save();
+    notifyListeners();
   }
 }
